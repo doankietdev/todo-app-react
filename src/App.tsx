@@ -8,9 +8,9 @@ function App() {
       
       <h1 className="text-4xl font-semibold text-center">Todo App</h1>
 
-      <div className="py-6 h-full overflow-y-hidden flex flex-col gap-6">
-        <Filter />
+      <div className="py-6 h-full overflow-y-hidden flex flex-col gap-5">
         <AddTodo />
+        <Filter />
         <TodoList />
       </div>
     </main>
