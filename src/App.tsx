@@ -1,4 +1,5 @@
-import AddTodo from "./components/AddTodo";
+import AddTodo from "./components/AddTodo/AddTodo";
+import TodoList from "./components/TodoList/TodoList";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <div className="py-6">
 
         <AddTodo />
+        <TodoList />
       </div>
 
       <div></div>
