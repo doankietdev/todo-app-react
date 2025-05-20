@@ -22,6 +22,7 @@ function AddTodo() {
       name: taskName,
       isCompleted: false
     } as Todo))
+    setTaskName("")
     toast.success("Add todo successfully")
   }
 
