@@ -1,9 +1,17 @@
+import AddTodo from "./components/AddTodo";
+
 function App() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen space-y-20">
-      <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
-        Todo App
-      </h1>
+    <main className="w-[500px] mx-auto flex flex-col bg-white p-5 shadow-[0_0_10px_4px_#dbdbdb] rounded-md h-[90vh]">
+      
+      <h1 className="text-4xl font-semibold text-center">Todo App</h1>
+
+      <div className="py-6">
+
+        <AddTodo />
+      </div>
+
+      <div></div>
     </main>
   );
 }
