@@ -2,7 +2,10 @@ import Button from "@/components/Button/Button";
 import Checkbox from "@/components/CheckBox/Checkbox";
 import TextField from "@/components/TextField/TextField";
 import { cn } from "@/lib/utils";
+import { todoActions } from "@/redux/slices/todoSlice";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 interface Props {
   id: string;
@@ -13,6 +16,7 @@ interface Props {
 function Todo({ id, name, isCompleted }: Props) {
   const [checked, setChecked] = useState(isCompleted);
   const [isEdit, setIsEdit] = useState(false);
+  const dispatch = useDispatch();
 
   const handleCheckboxChange = (checked: boolean) => {
     setChecked(checked);
@@ -25,6 +29,11 @@ function Todo({ id, name, isCompleted }: Props) {
   const handleCancelEditClick = () => {
     setIsEdit(false);
   };
+
+  const handleRemoveClick = () => {
+    dispatch(todoActions.deleteTodo({ id }))
+    toast.success('Remove todo successfully')
+  }
 
   return (
     <div className="flex gap-3">
@@ -58,7 +67,7 @@ function Todo({ id, name, isCompleted }: Props) {
             <Button onClick={handleEditClick} type="outlined" size="sm">
               Edit
             </Button>
-            <Button type="outlined" variant="danger" size="sm">
+            <Button type="outlined" variant="danger" size="sm" onClick={handleRemoveClick}>
               Remove
             </Button>
           </>

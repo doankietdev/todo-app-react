@@ -7,7 +7,7 @@ function App() {
       
       <h1 className="text-4xl font-semibold text-center">Todo App</h1>
 
-      <div className="py-6">
+      <div className="py-6 h-full overflow-y-hidden">
 
         <AddTodo />
         <TodoList />
