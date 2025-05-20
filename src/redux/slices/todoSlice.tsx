@@ -18,7 +18,7 @@ const todoSlice = createSlice({
       state.todos.push(action.payload)
     },
     updateTodo(state, action) {
-      const todo = state.todos.find(todo => todo.id === action.payload.id)
+      const todo = state.todos.find(todo => todo.id === action.payload.id) as Todo
       if (!todo) return
 
       const updateData = action.payload.updateData as Todo

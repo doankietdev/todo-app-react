@@ -16,10 +16,18 @@ interface Props {
 function Todo({ id, name, isCompleted }: Props) {
   const [checked, setChecked] = useState(isCompleted);
   const [isEdit, setIsEdit] = useState(false);
+  const [editedName, setEditedName] = useState(name)
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (checked: boolean) => {
-    setChecked(checked);
+    setChecked(checked)
+    dispatch(todoActions.updateTodo({
+      id,
+      updateData: {
+        name,
+        isCompleted: checked
+      }
+    }))
   };
 
   const handleEditClick = () => {
@@ -28,6 +36,7 @@ function Todo({ id, name, isCompleted }: Props) {
 
   const handleCancelEditClick = () => {
     setIsEdit(false);
+    setEditedName(name)
   };
 
   const handleRemoveClick = () => {
@@ -35,11 +44,26 @@ function Todo({ id, name, isCompleted }: Props) {
     toast.success('Remove todo successfully')
   }
 
+  const handleEditTextFieldChange = (value: string) => {
+    setEditedName(value)
+  }
+
+  const handleEditSaveClick = () => {
+    dispatch(todoActions.updateTodo({
+      id,
+      updateData: {
+        name: editedName,
+        isCompleted
+      }
+    }))
+    setIsEdit(false)
+    toast.success('Edit todo successfully')
+  }
   return (
     <div className="flex gap-3">
       <div className="flex-1">
         {isEdit ? (
-          <TextField value={name} />
+          <TextField value={editedName} onChange={handleEditTextFieldChange} />
         ) : (
           <div className={cn({ "opacity-50 line-through": checked })}>
             <Checkbox
@@ -58,7 +82,7 @@ function Todo({ id, name, isCompleted }: Props) {
             <Button onClick={handleCancelEditClick} variant="danger" type="outlined" size="sm">
               Cancel
             </Button>
-            <Button type="outlined" variant="primary" size="sm">
+            <Button type="outlined" variant="primary" size="sm" onClick={handleEditSaveClick}>
               Save
             </Button>
           </>
