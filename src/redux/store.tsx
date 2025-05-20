@@ -9,10 +9,12 @@ import {
   REGISTER
 } from 'redux-persist'
 import todoReducer from './slices/todoSlice'
+import filterReducer from './slices/filterSlice'
 
 const store = configureStore({
   reducer: {
-    todos: todoReducer
+    todos: todoReducer,
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
