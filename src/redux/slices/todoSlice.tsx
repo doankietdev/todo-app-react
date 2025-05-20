@@ -20,11 +20,8 @@ const todoSlice = createSlice({
     updateTodo(state, action) {
       const todo = state.todos.find(todo => todo.id === action.payload.id) as Todo
       if (!todo) return
-
       const updateData = action.payload.updateData as Todo
-
-      todo.name = updateData.name
-      todo.isCompleted = updateData.isCompleted
+      Object.assign(todo, updateData)
     },
     deleteTodo(state, action) {
       state.todos = state.todos.filter(todo => {
